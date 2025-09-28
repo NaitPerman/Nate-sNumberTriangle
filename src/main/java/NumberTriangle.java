@@ -100,7 +100,7 @@ public class NumberTriangle {
             return_val = this.right.retrieve(path.substring(1));
         }
 
-        return return_val; // this should work!
+        return return_val; // PR?
     }
 
     /** Read in the NumberTriangle structure from a file.
