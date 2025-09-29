@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the provided NumberTriangle class to be used in this coding task.
@@ -128,12 +130,32 @@ public class NumberTriangle {
         NumberTriangle top = null;
 
         String line = br.readLine();
+
+        List<NumberTriangle> prevTriangles = new ArrayList<NumberTriangle>();
+
         while (line != null) {
 
-            // remove when done; this line is included so running starter code prints the contents of the file
-            System.out.println(line);
+            String[] numbers = line.split(" ");
+            List<NumberTriangle> triangles = new ArrayList<NumberTriangle>();
 
-            // TODO process the line
+            for (String number : numbers) {
+                triangles.add(new NumberTriangle(Integer.parseInt(number)));
+            }
+
+            if (top == null) {
+                top = triangles.get(0);
+            }
+
+            if (prevTriangles != null) {
+                for (int i = 0; i < prevTriangles.size(); i++) {
+                    prevTriangles.get(i).setLeft(triangles.get(i));
+                    prevTriangles.get(i).setRight(triangles.get(i + 1));
+
+                }
+            }
+
+            prevTriangles = triangles;
+
 
             //read the next line
             line = br.readLine();
